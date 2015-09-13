@@ -1,0 +1,10 @@
+br\com\unigranrio\matafome\aplicacao\controllers\UsuarioController.class
+br\com\unigranrio\matafome\dominio\repositorios\UsuarioRepositorio.class
+br\com\unigranrio\matafome\dominio\repositorios\NegocioRepositorio.class
+br\com\unigranrio\matafome\dominio\acoes\CadastrarNegocio.class
+br\com\unigranrio\matafome\dominio\acoes\Erro.class
+br\com\unigranrio\matafome\dominio\acoes\CriarUsuario.class
+br\com\unigranrio\matafome\dominio\modelo\Usuario.class
+br\com\unigranrio\matafome\dominio\modelo\Negocio.class
+br\com\unigranrio\matafome\dominio\acoes\EditarNegocio.class
+br\com\unigranrio\matafome\aplicacao\ApplicationStarter.class
