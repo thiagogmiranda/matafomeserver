@@ -28,6 +28,8 @@ public class UsuarioRepositorioImpl extends RepositorioAbstrato implements Usuar
 				usuario.setId(resultSet.getLong("id"));
 				usuario.setEmail(resultSet.getString("email"));
 				usuario.setSenha(resultSet.getString("senha"));
+				
+				break;
 			}
 		} catch (Exception e) {
 			
