@@ -25,6 +25,9 @@ public class UsuarioRepositorioImpl extends RepositorioAbstrato implements Usuar
 			while (readResults()) {
 				usuario = new Usuario();
 				usuario.setNome(resultSet.getString("nome"));
+				usuario.setId(resultSet.getLong("id"));
+				usuario.setEmail(resultSet.getString("email"));
+				usuario.setSenha(resultSet.getString("senha"));
 			}
 		} catch (Exception e) {
 			
