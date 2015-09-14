@@ -6,23 +6,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.unigranrio.matafome.dominio.modelo.Usuario;
 import br.com.unigranrio.matafome.dominio.repositorios.UsuarioRepositorio;
+import br.com.unigranrio.matafome.infra.repositorios.UsuarioRepositorioImpl;
 
 @RestController()
 public class UsuarioController {
 	private UsuarioRepositorio usuarioRepositorio;
 	
 	public UsuarioController(){
-		//this.usuarioRepositorio = new 
+		this.usuarioRepositorio = new UsuarioRepositorioImpl(); 
 	}
 	
 	@RequestMapping("/usuario/obter-por-email")
 	public Usuario obterPorEmail(@RequestParam(value = "email")String email){
-		Usuario usuario = new Usuario();
-		usuario.setEmail("thiagogmiranda.br@gmail.com");
-		usuario.setNome("Thiago Miranda");
-		usuario.setSenha("1234");		
-		
-		return usuario;
-		//return usuarioRepositorio.obterPorEmail(email);
+		return usuarioRepositorio.obterPorEmail(email);
 	}
 }
