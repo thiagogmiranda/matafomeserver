@@ -26,7 +26,7 @@ public class UsuarioController {
 		return usuarioRepositorio.obterPorEmail(email);
 	}
 	
-	@RequestMapping(value = "/usuario/criar", method = RequestMethod.POST, headers = "Access-Control-Allow-Origin: *")
+	@RequestMapping(value = "/usuario/criar", method = RequestMethod.POST)
 	public void criarUsuario(@RequestBody Usuario usuario){
 		criarUsuario.Executar(usuario);
 	}
