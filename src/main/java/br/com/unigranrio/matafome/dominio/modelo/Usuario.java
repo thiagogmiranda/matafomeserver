@@ -1,26 +1,12 @@
 package br.com.unigranrio.matafome.dominio.modelo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "Usuario")
 public class Usuario {
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
 	
-	@Column(name = "nome", nullable = false, length = 60)
 	private String nome;
 	
-	@Column(name = "email", nullable = false, length = 200)
 	private String email;
 	
-	@Column(name = "senha", nullable = false, length = 50)
 	private String senha;
 	
 	public long getId() {
