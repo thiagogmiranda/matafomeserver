@@ -7,8 +7,18 @@ public class UsuarioRepositorioImpl extends RepositorioAbstrato implements Usuar
 
 	@Override
 	public void salvar(Usuario usuario) {
-		// TODO Auto-generated method stub
+		String query = "INSERT INTO Usuario(nome, email, senha) VALUES (?, ?, ?)";
 		
+		try {
+			openConnection();
+			
+			prepareStatement(query, usuario.getNome(), usuario.getEmail(), usuario.getSenha());
+			
+		} catch (Exception e) {
+			
+		} finally {
+			closeConnection();
+		}
 	}
 
 	@Override
