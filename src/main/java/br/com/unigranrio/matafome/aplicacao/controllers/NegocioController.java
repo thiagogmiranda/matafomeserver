@@ -20,7 +20,7 @@ public class NegocioController {
 		negocioRepositorio = new NegocioRepositorioImpl();
 	}
 	
-	@RequestMapping("/usuario/obter-por-email")
+	@RequestMapping("/negocio/obter-todos-dentro-raio")
 	public List<Negocio> obterPorEmail(
 			@RequestParam(value = "raio")
 			double raio,
