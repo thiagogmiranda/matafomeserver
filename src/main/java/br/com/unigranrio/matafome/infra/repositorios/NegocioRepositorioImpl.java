@@ -66,7 +66,7 @@ public class NegocioRepositorioImpl extends RepositorioAbstrato implements Negoc
 	}
 	
 	private double distancia(LatLng pontoA, LatLng pontoB){		
-		double R = 6372.8;
+		double R = 6371;
 		double dLat = Math.toRadians(pontoB.lat - pontoA.lat);
         double dLon = Math.toRadians(pontoB.lng - pontoA.lng);
         double latA = Math.toRadians(pontoA.lat);
