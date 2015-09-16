@@ -71,7 +71,7 @@ public class NegocioRepositorioImpl extends RepositorioAbstrato implements Negoc
         double lngA = pontoA.lng;
         double lngB = pontoB.lng;
         
-        return (6371* Math.acos(Math.cos(Math.PI * (90-latB)/180)*Math.cos((90-latA)*Math.PI/180)+Math.sin((90-latB)*Math.PI/180)*Math.sin((90-latA)*Math.PI/180)*Math.cos((lngA-lngB)*Math.PI/180)));
+        return ((6371* Math.acos(Math.cos(Math.PI * (90-latB)/180)*Math.cos((90-latA)*Math.PI/180)+Math.sin((90-latB)*Math.PI/180)*Math.sin((90-latA)*Math.PI/180)*Math.cos((lngA-lngB)*Math.PI/180)))) * 1000;
 	}
 
 }
