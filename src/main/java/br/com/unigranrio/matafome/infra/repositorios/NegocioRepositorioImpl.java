@@ -66,10 +66,10 @@ public class NegocioRepositorioImpl extends RepositorioAbstrato implements Negoc
 	}
 	
 	private double distancia(LatLng pontoA, LatLng pontoB){		
-        double latA = Math.toRadians(pontoA.lat);
-        double latB = Math.toRadians(pontoB.lat);
-        double lngA = Math.toRadians(pontoA.lng);
-        double lngB = Math.toRadians(pontoB.lng);
+        double latA = pontoA.lat;
+        double latB = pontoB.lat;
+        double lngA = pontoA.lng;
+        double lngB = pontoB.lng;
         
         return (6371* Math.acos(Math.cos(Math.PI * (90-latB)/180)*Math.cos((90-latA)*Math.PI/180)+Math.sin((90-latB)*Math.PI/180)*Math.sin((90-latA)*Math.PI/180)*Math.cos((lngA-lngB)*Math.PI/180)));
 	}
