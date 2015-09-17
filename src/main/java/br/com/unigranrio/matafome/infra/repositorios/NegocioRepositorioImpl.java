@@ -66,26 +66,18 @@ public class NegocioRepositorioImpl extends RepositorioAbstrato implements Negoc
 	}
 	
 	private double distancia(LatLng pontoA, LatLng pontoB){		
-        double latA = Math.toRadians(pontoA.lat);
-        double latB = Math.toRadians(pontoB.lat);
-        double lngA = Math.toRadians(pontoA.lng);
-        double lngB = Math.toRadians(pontoB.lng);
-        
-     // Conversão de graus pra radianos das latitudes
-        double firstLatToRad = Math.toRadians(latA);
-        double secondLatToRad = Math.toRadians(latB);
+		// Conversão de graus pra radianos das latitudes
+        double firstLatToRad = Math.toRadians(pontoA.lat);
+        double secondLatToRad = Math.toRadians(pontoB.lat);
 
         // Diferença das longitudes
-        double deltaLongitudeInRad = Math.toRadians(lngB
-        - lngA);
+        double deltaLongitudeInRad = Math.toRadians(pontoB.lng - pontoA.lng);
 
         // Cálcula da distância entre os pontos
         return Math.acos(Math.cos(firstLatToRad) * Math.cos(secondLatToRad)
-        * Math.cos(deltaLongitudeInRad) + Math.sin(firstLatToRad)
-        * Math.sin(secondLatToRad))
-        * 6371;
-        
-        //return (6371* Math.acos(Math.cos(Math.PI * (90-latB)/180)*Math.cos((90-latA)*Math.PI/180)+Math.sin((90-latB)*Math.PI/180)*Math.sin((90-latA)*Math.PI/180)*Math.cos((lngA-lngB)*Math.PI/180)));
+		        * Math.cos(deltaLongitudeInRad) + Math.sin(firstLatToRad)
+		        * Math.sin(secondLatToRad))
+		        * 6371;
 	}
 
 }
