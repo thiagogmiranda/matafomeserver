@@ -3,6 +3,9 @@ package br.com.unigranrio.matafome.infra.repositorios;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.maps.internal.DistanceAdapter;
+import com.google.maps.model.Distance;
+import com.google.maps.model.DistanceMatrix;
 import com.google.maps.model.LatLng;
 
 import br.com.unigranrio.matafome.dominio.modelo.Negocio;
@@ -32,12 +35,12 @@ public class NegocioRepositorioImpl extends RepositorioAbstrato implements Negoc
 	public List<Negocio> obterTodosDentroDoRaio(double raio, LatLng coordenadas) {
 		List<Negocio> barracas = new ArrayList<Negocio>();
 		
-		String query = "SELECT * FROM barraca";
+		String query = "SELECT * FROM barraca WHERE ? = public.geodistance(?, ?, latitude, longitude)";
 		
 		try {
 			openConnection();
 			
-			prepareStatement(query);
+			prepareStatement(query, (raio/1000), coordenadas.lat, coordenadas.lng);
 			
 			while (readResults()) {
 				Negocio negocio = new Negocio();
@@ -48,13 +51,7 @@ public class NegocioRepositorioImpl extends RepositorioAbstrato implements Negoc
 				negocio.setLatitude(resultSet.getFloat("latitude"));
 				negocio.setLongitude(resultSet.getFloat("longitude"));
 				
-				LatLng localNegocio = new LatLng(negocio.getLatitude(), negocio.getLongitude());
-				
-				double d = distancia(coordenadas, localNegocio);
-				
-				if(d <= (raio/1000)){
-					barracas.add(negocio);
-				}
+				barracas.add(negocio);
 			}
 		} catch (Exception e) {
 			
@@ -64,20 +61,4 @@ public class NegocioRepositorioImpl extends RepositorioAbstrato implements Negoc
 		
 		return barracas;
 	}
-	
-	private double distancia(LatLng pontoA, LatLng pontoB){		
-		// Conversão de graus pra radianos das latitudes
-        double firstLatToRad = Math.toRadians(pontoA.lat);
-        double secondLatToRad = Math.toRadians(pontoB.lat);
-
-        // Diferença das longitudes
-        double deltaLongitudeInRad = Math.toRadians(pontoB.lng - pontoA.lng);
-
-        // Cálcula da distância entre os pontos
-        return Math.acos(Math.cos(firstLatToRad) * Math.cos(secondLatToRad)
-		        * Math.cos(deltaLongitudeInRad) + Math.sin(firstLatToRad)
-		        * Math.sin(secondLatToRad))
-		        * 6371;
-	}
-
 }
