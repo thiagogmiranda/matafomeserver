@@ -35,7 +35,7 @@ public class NegocioRepositorioImpl extends RepositorioAbstrato implements Negoc
 	public List<Negocio> obterTodosDentroDoRaio(double raio, LatLng coordenadas) {
 		List<Negocio> barracas = new ArrayList<Negocio>();
 		
-		String query = "SELECT * FROM barraca WHERE ? = public.geodistance(?, ?, latitude, longitude)";
+		String query = "SELECT * FROM barraca WHERE ? >= public.geodistance(?, ?, latitude, longitude)";
 		
 		try {
 			openConnection();
