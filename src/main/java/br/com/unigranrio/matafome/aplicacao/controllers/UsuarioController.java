@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.unigranrio.matafome.dominio.acoes.CriarUsuario;
+import br.com.unigranrio.matafome.dominio.acoes.ResultadoAcao;
 import br.com.unigranrio.matafome.dominio.modelo.Usuario;
 import br.com.unigranrio.matafome.dominio.repositorios.UsuarioRepositorio;
+import br.com.unigranrio.matafome.dominio.validadores.ValidadorCadastroUsuario;
 import br.com.unigranrio.matafome.infra.repositorios.UsuarioRepositorioImpl;
 
 @RestController()
@@ -18,7 +20,7 @@ public class UsuarioController {
 	
 	public UsuarioController(){
 		this.usuarioRepositorio = new UsuarioRepositorioImpl();
-		this.criarUsuario = new CriarUsuario(usuarioRepositorio);
+		this.criarUsuario = new CriarUsuario(usuarioRepositorio, new ValidadorCadastroUsuario(usuarioRepositorio));
 	}
 	
 	@RequestMapping("/usuario/obter-por-email")
@@ -27,7 +29,7 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value = "/usuario/criar", method = RequestMethod.POST)
-	public void criarUsuario(@RequestBody Usuario usuario){
-		criarUsuario.Executar(usuario);
+	public ResultadoAcao criarUsuario(@RequestBody Usuario usuario){
+		return criarUsuario.Executar(usuario);
 	}
 }

@@ -1,6 +1,6 @@
 package br.com.unigranrio.matafome.dominio.modelo;
 
-public class Negocio {
+public class Barraca {
 	private long id;
 	private long idDono;
 	private String nome;
