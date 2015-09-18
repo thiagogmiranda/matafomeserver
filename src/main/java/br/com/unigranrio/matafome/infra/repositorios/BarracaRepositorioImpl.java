@@ -27,8 +27,25 @@ public class BarracaRepositorioImpl extends RepositorioAbstrato implements Barra
 
 	@Override
 	public Barraca obterPorId(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Barraca barraca = null;
+		
+		String query = "SELECT * FROM barraca WHERE id = ?";
+		
+		try {
+			openConnection();
+			
+			prepareStatement(query, id);
+			
+			while (readResults()) {
+				barraca = resultSetParaObjeto();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+		
+		return barraca;
 	}
 
 	@Override
