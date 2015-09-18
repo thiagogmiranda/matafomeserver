@@ -35,7 +35,7 @@ public class NegocioRepositorioImpl extends RepositorioAbstrato implements Negoc
 		try {
 			openConnection();
 			
-			prepareStatement(query, lat, lng);
+			prepareStatement(query, raio, lat, lng);
 			
 			while (readResults()) {
 				Negocio negocio = new Negocio();
