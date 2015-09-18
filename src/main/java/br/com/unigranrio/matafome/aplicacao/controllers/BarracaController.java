@@ -6,20 +6,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.unigranrio.matafome.dominio.modelo.Negocio;
-import br.com.unigranrio.matafome.dominio.repositorios.NegocioRepositorio;
-import br.com.unigranrio.matafome.infra.repositorios.NegocioRepositorioImpl;
+import br.com.unigranrio.matafome.dominio.modelo.Barraca;
+import br.com.unigranrio.matafome.dominio.repositorios.BarracaRepositorio;
+import br.com.unigranrio.matafome.infra.repositorios.BarracaRepositorioImpl;
 
 @RestController()
-public class NegocioController {
-	private NegocioRepositorio negocioRepositorio;
+public class BarracaController {
+	private BarracaRepositorio negocioRepositorio;
 	
-	public NegocioController() {
-		negocioRepositorio = new NegocioRepositorioImpl();
+	public BarracaController() {
+		negocioRepositorio = new BarracaRepositorioImpl();
 	}
 	
 	@RequestMapping("/negocio/obter-todos-dentro-raio")
-	public List<Negocio> obterPorEmail(
+	public List<Barraca> obterPorEmail(
 			@RequestParam(value = "raio")
 			double raio,
 			@RequestParam(value = "lat")
