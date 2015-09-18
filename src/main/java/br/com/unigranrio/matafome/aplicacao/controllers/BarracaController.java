@@ -2,24 +2,29 @@ package br.com.unigranrio.matafome.aplicacao.controllers;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.unigranrio.matafome.dominio.acoes.CadastrarBarraca;
 import br.com.unigranrio.matafome.dominio.modelo.Barraca;
 import br.com.unigranrio.matafome.dominio.repositorios.BarracaRepositorio;
 import br.com.unigranrio.matafome.infra.repositorios.BarracaRepositorioImpl;
 
 @RestController()
 public class BarracaController {
-	private BarracaRepositorio negocioRepositorio;
+	private BarracaRepositorio barracaRepositorio;
+	private CadastrarBarraca cadastrarBarraca;
 	
 	public BarracaController() {
-		negocioRepositorio = new BarracaRepositorioImpl();
+		barracaRepositorio = new BarracaRepositorioImpl();
+		cadastrarBarraca = new CadastrarBarraca();
 	}
 	
-	@RequestMapping("/negocio/obter-todos-dentro-raio")
-	public List<Barraca> obterPorEmail(
+	@RequestMapping("/barraca/obter-todas-dentro-raio")
+	public List<Barraca> obterTodasDentroDoRaio(
 			@RequestParam(value = "raio")
 			double raio,
 			@RequestParam(value = "lat")
@@ -27,6 +32,21 @@ public class BarracaController {
 			@RequestParam(value = "lng")
 			double lng){
 		
-		return negocioRepositorio.obterTodosDentroDoRaio(raio, lat, lng);
+		return barracaRepositorio.obterTodosDentroDoRaio(raio, lat, lng);
+	}
+	
+	@RequestMapping("/barraca/obter-todas-usuario")
+	public List<Barraca> obterTodasDoUsuario(@RequestParam(value = "raio") long iddono){
+		return barracaRepositorio.obterTodosDoUsuario(iddono);
+	}
+	
+	@RequestMapping("/barraca/obter")
+	public Barraca obterPorId(@RequestParam(value = "id") long id){
+		return barracaRepositorio.obterPorId(id);
+	}
+	
+	@RequestMapping(value = "/barraca/cadastrar", method = RequestMethod.POST)
+	public void cadastrar(@RequestBody Barraca barraca){
+		cadastrarBarraca.executar(barraca);
 	}
 }
