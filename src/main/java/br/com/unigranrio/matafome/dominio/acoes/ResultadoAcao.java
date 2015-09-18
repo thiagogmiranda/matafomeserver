@@ -17,4 +17,8 @@ public class ResultadoAcao {
 	public void adicionarMensagens(List<Mensagem> mensagens) {
 		this.mensagens.addAll(mensagens);
 	}
+	
+	public List<Mensagem> getMensagens(){
+		return this.mensagens;
+	}
 }
