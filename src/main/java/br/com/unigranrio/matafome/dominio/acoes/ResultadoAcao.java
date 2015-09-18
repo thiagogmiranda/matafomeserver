@@ -11,7 +11,7 @@ public class ResultadoAcao {
 	}
 	
 	public boolean deuCerto(){
-		return mensagens.stream().count() == 0;
+		return mensagens.size() == 0;
 	}
 
 	public void adicionarMensagens(List<Mensagem> mensagens) {
