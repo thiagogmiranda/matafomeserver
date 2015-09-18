@@ -9,4 +9,5 @@ public interface BarracaRepositorio {
 	Barraca obterPorId(long id);
 	List<Barraca> obterTodosDoUsuario(long idDono);
 	List<Barraca> obterTodosDentroDoRaio(double raio, double lat, double lng);
+	Barraca obterPorLatLng(double lat, double lng);
 }

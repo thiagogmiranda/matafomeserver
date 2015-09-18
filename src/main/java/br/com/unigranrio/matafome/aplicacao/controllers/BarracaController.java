@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.unigranrio.matafome.dominio.acoes.CadastrarBarraca;
+import br.com.unigranrio.matafome.dominio.acoes.ResultadoAcao;
 import br.com.unigranrio.matafome.dominio.modelo.Barraca;
 import br.com.unigranrio.matafome.dominio.repositorios.BarracaRepositorio;
+import br.com.unigranrio.matafome.dominio.validadores.ValidadorCadastroBarraca;
 import br.com.unigranrio.matafome.infra.repositorios.BarracaRepositorioImpl;
 
 @RestController()
@@ -20,7 +22,7 @@ public class BarracaController {
 	
 	public BarracaController() {
 		barracaRepositorio = new BarracaRepositorioImpl();
-		cadastrarBarraca = new CadastrarBarraca();
+		cadastrarBarraca = new CadastrarBarraca(barracaRepositorio, new ValidadorCadastroBarraca(barracaRepositorio));
 	}
 	
 	@RequestMapping("/barraca/obter-todas-dentro-raio")
@@ -46,7 +48,7 @@ public class BarracaController {
 	}
 	
 	@RequestMapping(value = "/barraca/cadastrar", method = RequestMethod.POST)
-	public void cadastrar(@RequestBody Barraca barraca){
-		cadastrarBarraca.executar(barraca);
+	public ResultadoAcao cadastrar(@RequestBody Barraca barraca){
+		return cadastrarBarraca.executar(barraca);
 	}
 }

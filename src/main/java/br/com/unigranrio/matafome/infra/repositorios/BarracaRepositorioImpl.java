@@ -38,6 +38,7 @@ public class BarracaRepositorioImpl extends RepositorioAbstrato implements Barra
 			
 			while (readResults()) {
 				barraca = resultSetParaObjeto();
+				break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -103,6 +104,30 @@ public class BarracaRepositorioImpl extends RepositorioAbstrato implements Barra
 		barraca.setIdDono(resultSet.getLong("iddono"));
 		barraca.setLatitude(resultSet.getFloat("latitude"));
 		barraca.setLongitude(resultSet.getFloat("longitude"));
+		
+		return barraca;
+	}
+
+	@Override
+	public Barraca obterPorLatLng(double lat, double lng) {
+		Barraca barraca = null;
+		
+		String query = "SELECT * FROM barraca WHERE latitude = ? AND longitude = ?";
+		
+		try {
+			openConnection();
+			
+			prepareStatement(query, lat, lng);
+			
+			while (readResults()) {
+				barraca = resultSetParaObjeto();
+				break;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
 		
 		return barraca;
 	}
