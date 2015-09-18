@@ -20,7 +20,7 @@ public class UsuarioController {
 	
 	public UsuarioController(){
 		this.usuarioRepositorio = new UsuarioRepositorioImpl();
-		this.criarUsuario = new CriarUsuario(usuarioRepositorio, new ValidadorCadastroUsuario());
+		this.criarUsuario = new CriarUsuario(usuarioRepositorio, new ValidadorCadastroUsuario(usuarioRepositorio));
 	}
 	
 	@RequestMapping("/usuario/obter-por-email")
