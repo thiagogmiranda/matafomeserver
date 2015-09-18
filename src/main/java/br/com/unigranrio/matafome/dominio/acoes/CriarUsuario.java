@@ -17,7 +17,7 @@ public class CriarUsuario {
 		ResultadoAcao resultado = new ResultadoAcao();
 		resultado.adicionarMensagens(validadorCadastro.validar(usuario));
 		
-		if(resultado.isSucesso()){
+		if(resultado.deuCerto()){
 			usuarioRepositorio.salvar(usuario);
 		}
 		

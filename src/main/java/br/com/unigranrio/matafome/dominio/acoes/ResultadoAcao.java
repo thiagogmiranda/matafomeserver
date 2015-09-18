@@ -10,7 +10,7 @@ public class ResultadoAcao {
 		mensagens = new ArrayList<Mensagem>();
 	}
 	
-	public boolean isSucesso(){
+	public boolean deuCerto(){
 		return mensagens.stream().count() == 0;
 	}
 
@@ -20,5 +20,9 @@ public class ResultadoAcao {
 	
 	public List<Mensagem> getMensagens(){
 		return this.mensagens;
+	}
+	
+	public void setMensagens(List<Mensagem> mensagens){
+		this.mensagens = mensagens;
 	}
 }
