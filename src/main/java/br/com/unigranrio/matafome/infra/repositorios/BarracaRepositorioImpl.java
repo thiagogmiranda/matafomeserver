@@ -1,5 +1,6 @@
 package br.com.unigranrio.matafome.infra.repositorios;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +33,25 @@ public class BarracaRepositorioImpl extends RepositorioAbstrato implements Barra
 
 	@Override
 	public List<Barraca> obterTodosDoUsuario(long idDono) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Barraca> barracas = new ArrayList<Barraca>();
+		
+		String query = "SELECT * FROM barraca WHERE iddono = ?";
+		
+		try {
+			openConnection();
+			
+			prepareStatement(query, idDono);
+			
+			while (readResults()) {
+				barracas.add(resultSetParaObjeto());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+		
+		return barracas;
 	}
 
 	@Override
@@ -48,15 +66,7 @@ public class BarracaRepositorioImpl extends RepositorioAbstrato implements Barra
 			prepareStatement(query);
 			
 			while (readResults()) {
-				Barraca negocio = new Barraca();
-				negocio.setNome(resultSet.getString("nome"));
-				negocio.setId(resultSet.getLong("id"));
-				negocio.setDescricao(resultSet.getString("descricao"));
-				negocio.setIdDono(resultSet.getLong("iddono"));
-				negocio.setLatitude(resultSet.getFloat("latitude"));
-				negocio.setLongitude(resultSet.getFloat("longitude"));
-				
-				barracas.add(negocio);
+				barracas.add(resultSetParaObjeto());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,5 +75,18 @@ public class BarracaRepositorioImpl extends RepositorioAbstrato implements Barra
 		}
 		
 		return barracas;
+	}
+	
+	private Barraca resultSetParaObjeto() throws SQLException{
+		Barraca barraca = new Barraca();
+		
+		barraca.setNome(resultSet.getString("nome"));
+		barraca.setId(resultSet.getLong("id"));
+		barraca.setDescricao(resultSet.getString("descricao"));
+		barraca.setIdDono(resultSet.getLong("iddono"));
+		barraca.setLatitude(resultSet.getFloat("latitude"));
+		barraca.setLongitude(resultSet.getFloat("longitude"));
+		
+		return barraca;
 	}
 }
