@@ -30,12 +30,12 @@ public class NegocioRepositorioImpl extends RepositorioAbstrato implements Negoc
 	public List<Negocio> obterTodosDentroDoRaio(double raio, double lat, double lng) {
 		List<Negocio> barracas = new ArrayList<Negocio>();
 		
-		String query = "SELECT * FROM barraca WHERE cast((?/1000.0) as double precision) >= public.geodistance(?, ?, latitude, longitude)";
+		String query = "SELECT * FROM barraca WHERE " + (double)(raio / 1000.00) + " >= public.geodistance(?, ?, latitude, longitude)";
 		
 		try {
 			openConnection();
 			
-			prepareStatement(query, raio, lat, lng);
+			prepareStatement(query, lat, lng);
 			
 			while (readResults()) {
 				Negocio negocio = new Negocio();
