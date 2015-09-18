@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.maps.model.LatLng;
-
 import br.com.unigranrio.matafome.dominio.modelo.Negocio;
 import br.com.unigranrio.matafome.dominio.repositorios.NegocioRepositorio;
 import br.com.unigranrio.matafome.infra.repositorios.NegocioRepositorioImpl;
@@ -29,6 +27,6 @@ public class NegocioController {
 			@RequestParam(value = "lng")
 			double lng){
 		
-		return negocioRepositorio.obterTodosDentroDoRaio(raio, new LatLng(lat, lng));
+		return negocioRepositorio.obterTodosDentroDoRaio(raio, lat, lng);
 	}
 }

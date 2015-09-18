@@ -3,11 +3,6 @@ package br.com.unigranrio.matafome.infra.repositorios;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.maps.internal.DistanceAdapter;
-import com.google.maps.model.Distance;
-import com.google.maps.model.DistanceMatrix;
-import com.google.maps.model.LatLng;
-
 import br.com.unigranrio.matafome.dominio.modelo.Negocio;
 import br.com.unigranrio.matafome.dominio.repositorios.NegocioRepositorio;
 
@@ -32,15 +27,15 @@ public class NegocioRepositorioImpl extends RepositorioAbstrato implements Negoc
 	}
 
 	@Override
-	public List<Negocio> obterTodosDentroDoRaio(double raio, LatLng coordenadas) {
+	public List<Negocio> obterTodosDentroDoRaio(double raio, double lat, double lng) {
 		List<Negocio> barracas = new ArrayList<Negocio>();
 		
-		String query = "SELECT * FROM barraca WHERE " + (double)(raio/1000.00) + " >= public.geodistance(" + coordenadas.lat + ", " + coordenadas.lng + ", latitude, longitude)";
+		String query = "SELECT * FROM barraca WHERE cast(? as double precision) >= public.geodistance(?, ?, latitude, longitude)";
 		
 		try {
 			openConnection();
 			
-			prepareStatement(query);
+			prepareStatement(query, lat, lng);
 			
 			while (readResults()) {
 				Negocio negocio = new Negocio();
