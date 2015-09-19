@@ -11,7 +11,7 @@ public class BarracaRepositorioImpl extends RepositorioAbstrato implements Barra
 
 	@Override
 	public void salvar(Barraca barraca) {
-		String query = "INSERT INTO barraca(nome, email, senha) VALUES (?, ?, ?, ?, ?)";
+		String query = "INSERT INTO barraca(iddono, nome, descricao, latitude, longitude) VALUES (?, ?, ?, ?, ?)";
 		
 		try {
 			openConnection();
