@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.unigranrio.matafome.aplicacao.Teste;
 import br.com.unigranrio.matafome.dominio.acoes.CadastrarBarraca;
 import br.com.unigranrio.matafome.dominio.acoes.ResultadoAcao;
 import br.com.unigranrio.matafome.dominio.modelo.Barraca;
@@ -53,13 +54,7 @@ public class BarracaController {
 	}
 	
 	@RequestMapping("/barraca/criar-teste")
-	public ResultadoAcao criarTeste(){
-		Barraca b = new Barraca();
-		b.setIdDono(1);
-		b.setLatitude(-22.789493);
-		b.setLongitude(-43.306523);
-		b.setNome("Podrão da Esquina");
-		b.setDescricao("fgsdfgsdfg");
-		return cadastrarBarraca.executar(b);
+	public void criarTeste(){
+		Teste.main(new String[] {""});
 	}
 }
