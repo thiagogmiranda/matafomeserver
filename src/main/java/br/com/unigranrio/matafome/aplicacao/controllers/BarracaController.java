@@ -56,8 +56,8 @@ public class BarracaController {
 	public ResultadoAcao criarTeste(){
 		Barraca b = new Barraca();
 		b.setIdDono(1);
-		b.setLatitude(-22.789628);
-		b.setLongitude(-43.306287);
+		b.setLatitude(-22.789493);
+		b.setLongitude(-43.306523);
 		b.setNome("Podrão da Esquina");
 		
 		return cadastrarBarraca.executar(b);
