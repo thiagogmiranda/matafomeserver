@@ -59,7 +59,7 @@ public class BarracaController {
 		b.setLatitude(-22.789493);
 		b.setLongitude(-43.306523);
 		b.setNome("Podrão da Esquina");
-		
+		b.setDescricao("fgsdfgsdfg");
 		return cadastrarBarraca.executar(b);
 	}
 }
