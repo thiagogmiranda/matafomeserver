@@ -40,7 +40,7 @@ public abstract class RepositorioAbstrato {
 			int indice = 1;
 			
 			for(Object param : parametros){
-				preparedStatement.setString(indice, param.toString());
+				preparedStatement.setString(indice, String.valueOf(param));
 				
 				indice++;
 			}
