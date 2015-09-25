@@ -39,8 +39,14 @@ public abstract class RepositorioAbstrato {
 		if (parametros != null) {
 			int indice = 1;
 			
-			for(Object param : parametros){
-				preparedStatement.setString(indice, String.valueOf(param));
+			for(Object param : parametros){				
+				if(Long.class.isInstance(param)){
+					preparedStatement.setLong(indice, Long.parseLong(String.valueOf(param)));
+				} else if (Double.class.isInstance(param)){
+					preparedStatement.setDouble(indice, Double.parseDouble(String.valueOf(param)));
+				} else {
+					preparedStatement.setString(indice, String.valueOf(param));
+				}
 				
 				indice++;
 			}
