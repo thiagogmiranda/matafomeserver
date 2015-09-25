@@ -53,12 +53,12 @@ public class BarracaRepositorioImpl extends RepositorioAbstrato implements Barra
 	public List<Barraca> obterTodosDoUsuario(long idDono) {
 		List<Barraca> barracas = new ArrayList<Barraca>();
 		
-		String query = "SELECT * FROM barraca WHERE iddono = ?";
+		String query = "SELECT * FROM barraca WHERE iddono = " + idDono;
 		
 		try {
 			openConnection();
 			
-			prepareStatement(query, idDono);
+			prepareStatement(query);
 			
 			while (readResults()) {
 				barracas.add(resultSetParaObjeto());
