@@ -52,7 +52,7 @@ public class BarracaController {
 		return cadastrarBarraca.executar(barraca);
 	}
 	
-	@RequestMapping(value = "/barraca/cadastrar-teste", method = RequestMethod.POST)
+	@RequestMapping("/barraca/cadastrar-teste")
 	public ResultadoAcao cadastrarTeste(){
 		Barraca barraca = new Barraca();
 		barraca.setIdDono(1);
