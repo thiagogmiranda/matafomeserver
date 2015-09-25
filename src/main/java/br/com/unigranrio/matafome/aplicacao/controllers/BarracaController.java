@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.unigranrio.matafome.aplicacao.Teste;
 import br.com.unigranrio.matafome.dominio.acoes.CadastrarBarraca;
 import br.com.unigranrio.matafome.dominio.acoes.ResultadoAcao;
 import br.com.unigranrio.matafome.dominio.modelo.Barraca;
@@ -53,8 +52,15 @@ public class BarracaController {
 		return cadastrarBarraca.executar(barraca);
 	}
 	
-	@RequestMapping("/barraca/criar-teste")
-	public void criarTeste(){
-		Teste.main(new String[] {""});
+	@RequestMapping(value = "/barraca/cadastrar-teste", method = RequestMethod.POST)
+	public ResultadoAcao cadastrarTeste(){
+		Barraca barraca = new Barraca();
+		barraca.setIdDono(1);
+		barraca.setNome("Pipoca da Loira");
+		barraca.setDescricao("Melhor pipoca da Universidade.");
+		barraca.setLatitude(-22.789629);
+		barraca.setLongitude(-43.306215);
+		
+		return cadastrarBarraca.executar(barraca);
 	}
 }
