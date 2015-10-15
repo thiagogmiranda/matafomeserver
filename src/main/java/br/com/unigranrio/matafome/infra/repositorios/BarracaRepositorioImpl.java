@@ -53,7 +53,7 @@ public class BarracaRepositorioImpl extends RepositorioAbstrato implements Barra
 	public List<Barraca> obterTodosDoUsuario(String email) {
 		List<Barraca> barracas = new ArrayList<Barraca>();
 		
-		String query = "SELECT * FROM barraca WHERE email = ?";
+		String query = "SELECT * FROM barraca WHERE iddono in (select id from Usuario where email = ?)";
 		
 		try {
 			openConnection();
