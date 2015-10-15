@@ -51,16 +51,4 @@ public class BarracaController {
 	public ResultadoAcao cadastrar(@RequestBody Barraca barraca){
 		return cadastrarBarraca.executar(barraca);
 	}
-	
-	@RequestMapping("/barraca/cadastrar-teste")
-	public ResultadoAcao cadastrarTeste(){
-		Barraca barraca = new Barraca();
-		barraca.setIdDono(1);
-		barraca.setNome("Pipoca da Loira");
-		barraca.setDescricao("Melhor pipoca da Universidade.");
-		barraca.setLatitude(-22.789629);
-		barraca.setLongitude(-43.306215);
-		
-		return cadastrarBarraca.executar(barraca);
-	}
 }
