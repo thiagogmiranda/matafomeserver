@@ -16,11 +16,11 @@ import br.com.unigranrio.matafome.dominio.validadores.ValidadorCadastroBarraca;
 import br.com.unigranrio.matafome.infra.repositorios.BarracaRepositorioImpl;
 
 @RestController()
-public class BarracaController {
+public class PontoVendaController {
 	private BarracaRepositorio barracaRepositorio;
 	private CadastrarBarraca cadastrarBarraca;
 	
-	public BarracaController() {
+	public PontoVendaController() {
 		barracaRepositorio = new BarracaRepositorioImpl();
 		cadastrarBarraca = new CadastrarBarraca(barracaRepositorio, new ValidadorCadastroBarraca(barracaRepositorio));
 	}
@@ -38,8 +38,8 @@ public class BarracaController {
 	}
 	
 	@RequestMapping("/barraca/obter-todas-usuario")
-	public List<Barraca> obterTodasDoUsuario(@RequestParam(value = "iddono") long iddono){
-		return barracaRepositorio.obterTodosDoUsuario(iddono);
+	public List<Barraca> obterTodosUsuario(@RequestParam(value = "email") String email){
+		return barracaRepositorio.obterTodosDoUsuario(email);
 	}
 	
 	@RequestMapping("/barraca/obter")

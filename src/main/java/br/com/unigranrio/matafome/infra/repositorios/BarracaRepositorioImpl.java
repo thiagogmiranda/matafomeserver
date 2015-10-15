@@ -50,15 +50,15 @@ public class BarracaRepositorioImpl extends RepositorioAbstrato implements Barra
 	}
 
 	@Override
-	public List<Barraca> obterTodosDoUsuario(long idDono) {
+	public List<Barraca> obterTodosDoUsuario(String email) {
 		List<Barraca> barracas = new ArrayList<Barraca>();
 		
-		String query = "SELECT * FROM barraca WHERE iddono = " + idDono;
+		String query = "SELECT * FROM barraca WHERE email = ?";
 		
 		try {
 			openConnection();
 			
-			prepareStatement(query);
+			prepareStatement(query, email);
 			
 			while (readResults()) {
 				barracas.add(resultSetParaObjeto());
