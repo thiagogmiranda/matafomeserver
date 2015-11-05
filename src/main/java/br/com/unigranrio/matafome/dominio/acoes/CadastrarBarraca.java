@@ -1,20 +1,20 @@
 package br.com.unigranrio.matafome.dominio.acoes;
 
-import br.com.unigranrio.matafome.dominio.modelo.Barraca;
-import br.com.unigranrio.matafome.dominio.repositorios.BarracaRepositorio;
-import br.com.unigranrio.matafome.dominio.validadores.ValidadorCadastroBarraca;
+import br.com.unigranrio.matafome.dominio.modelo.Negocio;
+import br.com.unigranrio.matafome.dominio.repositorios.NegocioRepositorio;
+import br.com.unigranrio.matafome.dominio.validadores.ValidadorCadastroNegocio;
 
 public class CadastrarBarraca {
 
-	private BarracaRepositorio barracaRepositorio;
-	private ValidadorCadastroBarraca validadorCadastro;
+	private NegocioRepositorio barracaRepositorio;
+	private ValidadorCadastroNegocio validadorCadastro;
 	
-	public CadastrarBarraca(BarracaRepositorio barracaRepositorio, ValidadorCadastroBarraca validadorCadastro){
+	public CadastrarBarraca(NegocioRepositorio barracaRepositorio, ValidadorCadastroNegocio validadorCadastro){
 		this.barracaRepositorio = barracaRepositorio;
 		this.validadorCadastro = validadorCadastro;
 	}
 	
-	public ResultadoAcao executar(Barraca barraca) {
+	public ResultadoAcao executar(Negocio barraca) {
 		ResultadoAcao resultado = new ResultadoAcao();
 		resultado.adicionarMensagens(validadorCadastro.validar(barraca));
 		

@@ -1,6 +1,6 @@
 CREATE TABLE Usuario (
 	Id serial unique,
-	Login varchar(15) not null,
+	Email varchar(200) not null,
 	Senha varchar(max) not null,
 	DataCadastro date not null
 );
@@ -8,8 +8,6 @@ CREATE TABLE Usuario (
 CREATE TABLE Consumidor (
 	Id serial unique,
 	Nome varchar(100) not null,
-	Email varchar(200) not null,
-	DataCadastro date not null,
 	IdUsuario int not null references Usuario(Id)
 );
 
@@ -19,7 +17,6 @@ CREATE TABLE Negocio (
 	Descricao varchar(300) not null,
 	Latitude double precision not null,
 	Longitude double precision not null,
-	DataCadastro date not null,
 	IdUsuario int not null references Usuario(Id)
 );
 

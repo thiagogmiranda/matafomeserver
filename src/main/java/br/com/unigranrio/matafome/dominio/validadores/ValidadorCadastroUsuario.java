@@ -18,18 +18,14 @@ public class ValidadorCadastroUsuario {
 	public List<Mensagem> validar(Usuario usuario){
 		List<Mensagem> mensagens = new ArrayList<Mensagem>();
 		
-		if("".equals(usuario.getNome())){
-			mensagens.add(new Mensagem("É obrigatório informar um nome"));
-		}
-		
 		String email = usuario.getEmail();
 		
 		if("".equals(email)){
 			mensagens.add(new Mensagem("É obrigatório informar um email"));
 		} else {
-			Usuario busca = usuarioRepositorio.obterPorEmail(email);
+			boolean existe = usuarioRepositorio.existeUsuarioComEmail(email);
 			
-			if(busca != null){
+			if(existe){
 				mensagens.add(new Mensagem("Já existe um usuário cadastrado com o email"));
 			}
 		}
