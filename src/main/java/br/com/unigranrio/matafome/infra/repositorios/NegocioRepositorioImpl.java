@@ -11,7 +11,7 @@ public class NegocioRepositorioImpl extends RepositorioAbstrato implements Negoc
 
 	@Override
 	public void salvar(Negocio negocio) {
-		String query = "INSERT INTO Negocio(iddono, nome, descricao, latitude, longitude) VALUES (?, ?, ?, ?, ?)";
+		String query = "insert into Negocio(idusuario, nome, descricao, latitude, longitude) VALUES (?, ?, ?, ?, ?)";
 
 		try {
 			openConnection();
@@ -30,7 +30,7 @@ public class NegocioRepositorioImpl extends RepositorioAbstrato implements Negoc
 	public Negocio obterPorId(long id) {
 		Negocio negocio = null;
 
-		String query = "SELECT * FROM Negocio WHERE id = ?";
+		String query = "select * from Negocio where id = ?";
 
 		try {
 			openConnection();
@@ -54,7 +54,7 @@ public class NegocioRepositorioImpl extends RepositorioAbstrato implements Negoc
 	public List<Negocio> obterTodosDoUsuario(String email) {
 		List<Negocio> barracas = new ArrayList<Negocio>();
 
-		String query = "SELECT * FROM Negocio WHERE iddono in (select id from Usuario where email = ?)";
+		String query = "SELECT * FROM Negocio WHERE idusuario in (select id from Usuario where email = ?)";
 
 		try {
 			openConnection();
@@ -102,7 +102,7 @@ public class NegocioRepositorioImpl extends RepositorioAbstrato implements Negoc
 		negocio.setNome(resultSet.getString("nome"));
 		negocio.setId(resultSet.getLong("id"));
 		negocio.setDescricao(resultSet.getString("descricao"));
-		negocio.setIdDono(resultSet.getLong("iddono"));
+		negocio.setIdDono(resultSet.getLong("idusuario"));
 		negocio.setLatitude(resultSet.getFloat("latitude"));
 		negocio.setLongitude(resultSet.getFloat("longitude"));
 
@@ -166,7 +166,7 @@ public class NegocioRepositorioImpl extends RepositorioAbstrato implements Negoc
 	public Negocio obterNegocioDoDono(long idDono) {
 		Negocio negocio = null;
 
-		String query = "SELECT * FROM Negocio WHERE iddono = ?";
+		String query = "SELECT * FROM Negocio WHERE idusuario = ?";
 
 		try {
 			openConnection();
