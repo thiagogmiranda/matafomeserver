@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Date;
 
 public abstract class RepositorioAbstrato {
 	protected Connection connection;
@@ -41,9 +42,15 @@ public abstract class RepositorioAbstrato {
 			
 			for(Object param : parametros){				
 				if(Long.class.isInstance(param)){
-					preparedStatement.setLong(indice, Long.parseLong(String.valueOf(param)));
+					Long num = (Long)param;					
+					preparedStatement.setLong(indice, num);
 				} else if (Double.class.isInstance(param)){
-					preparedStatement.setDouble(indice, Double.parseDouble(String.valueOf(param)));
+					Double num = (Double)param;
+					preparedStatement.setDouble(indice, num);
+				} else if (Date.class.isInstance(param)) {
+					java.util.Date data = (java.util.Date)param;
+					java.sql.Date dataSQL = new java.sql.Date(data.getTime());					
+					preparedStatement.setDate(indice, dataSQL);
 				} else {
 					preparedStatement.setString(indice, String.valueOf(param));
 				}
