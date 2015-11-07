@@ -1,5 +1,7 @@
 package br.com.unigranrio.matafome.dominio.acoes;
 
+import java.util.Date;
+
 import br.com.unigranrio.matafome.dominio.modelo.Usuario;
 import br.com.unigranrio.matafome.dominio.repositorios.UsuarioRepositorio;
 import br.com.unigranrio.matafome.dominio.validadores.ValidadorCadastroUsuario;
@@ -17,7 +19,10 @@ public class CriarUsuario {
 		ResultadoAcao resultado = new ResultadoAcao();
 		resultado.adicionarMensagens(validadorCadastro.validar(usuario));
 		
-		if(resultado.deuCerto()){
+		if(resultado.estaValido()){
+			usuario.setDataCadastro(new Date());
+			usuario.setTipo("UN"); // Não definido ainda
+			
 			usuarioRepositorio.salvar(usuario);
 		}
 		

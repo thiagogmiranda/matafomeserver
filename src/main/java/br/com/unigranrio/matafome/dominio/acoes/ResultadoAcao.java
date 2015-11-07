@@ -10,7 +10,7 @@ public class ResultadoAcao {
 		mensagens = new ArrayList<Mensagem>();
 	}
 	
-	public boolean deuCerto(){
+	public boolean estaValido(){
 		return mensagens.size() == 0;
 	}
 

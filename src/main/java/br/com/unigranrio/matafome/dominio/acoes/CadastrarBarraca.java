@@ -18,7 +18,7 @@ public class CadastrarBarraca {
 		ResultadoAcao resultado = new ResultadoAcao();
 		resultado.adicionarMensagens(validadorCadastro.validar(barraca));
 		
-		if(resultado.deuCerto()){
+		if(resultado.estaValido()){
 			barracaRepositorio.salvar(barraca);
 		}
 		
