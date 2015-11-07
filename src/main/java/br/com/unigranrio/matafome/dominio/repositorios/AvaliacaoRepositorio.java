@@ -1,5 +1,11 @@
 package br.com.unigranrio.matafome.dominio.repositorios;
 
-public class AvaliacaoRepositorio {
+import java.util.List;
+
+import br.com.unigranrio.matafome.dominio.modelo.Avaliacao;
+
+public interface AvaliacaoRepositorio {
+
+	List<Avaliacao> obterAvaliacoesPara(long idNegocio);
 
 }
