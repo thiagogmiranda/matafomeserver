@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.unigranrio.matafome.dominio.acoes.CadastrarBarraca;
+import br.com.unigranrio.matafome.dominio.acoes.CadastrarNegocio;
 import br.com.unigranrio.matafome.dominio.acoes.ResultadoAcao;
 import br.com.unigranrio.matafome.dominio.modelo.Negocio;
 import br.com.unigranrio.matafome.dominio.repositorios.NegocioRepositorio;
@@ -18,11 +18,11 @@ import br.com.unigranrio.matafome.infra.repositorios.NegocioRepositorioImpl;
 @RestController()
 public class NegocioController {
 	private NegocioRepositorio negocioRepositorio;
-	private CadastrarBarraca cadastrarNegocio;
+	private CadastrarNegocio cadastrarNegocio;
 	
 	public NegocioController() {
 		negocioRepositorio = new NegocioRepositorioImpl();
-		cadastrarNegocio = new CadastrarBarraca(negocioRepositorio, new ValidadorCadastroNegocio(negocioRepositorio));
+		cadastrarNegocio = new CadastrarNegocio(negocioRepositorio, new ValidadorCadastroNegocio(negocioRepositorio));
 	}
 	
 	@RequestMapping("/lanches/todos-no-raio")

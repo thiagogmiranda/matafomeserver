@@ -15,15 +15,19 @@ public class CriarUsuario {
 		this.validadorCadastro = validadorCadastro;
 	}
 	
-	public ResultadoAcao Executar(Usuario usuario){
+	public ResultadoAcao executar(Usuario usuario){
 		ResultadoAcao resultado = new ResultadoAcao();
 		resultado.adicionarMensagens(validadorCadastro.validar(usuario));
 		
 		if(resultado.estaValido()){
 			usuario.setDataCadastro(new Date());
-			usuario.setTipo("UN"); // Não definido ainda
+			usuario.setTipo("UN"); // Não definido ainda, usuário precisa escolher
 			
 			usuarioRepositorio.salvar(usuario);
+			
+			usuario = usuarioRepositorio.obterPorEmail(usuario.getEmail());
+			
+			resultado.setData(usuario);
 		}
 		
 		return resultado;

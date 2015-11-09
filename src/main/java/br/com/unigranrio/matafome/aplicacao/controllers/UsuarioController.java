@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.unigranrio.matafome.dominio.acoes.CriarUsuario;
+import br.com.unigranrio.matafome.dominio.acoes.EditarUsuario;
 import br.com.unigranrio.matafome.dominio.acoes.ResultadoAcao;
 import br.com.unigranrio.matafome.dominio.modelo.Usuario;
 import br.com.unigranrio.matafome.dominio.repositorios.UsuarioRepositorio;
@@ -17,10 +18,12 @@ import br.com.unigranrio.matafome.infra.repositorios.UsuarioRepositorioImpl;
 public class UsuarioController {
 	private UsuarioRepositorio usuarioRepositorio;
 	private CriarUsuario criarUsuario;
+	private EditarUsuario editarUsuario;
 	
 	public UsuarioController(){
 		this.usuarioRepositorio = new UsuarioRepositorioImpl();
 		this.criarUsuario = new CriarUsuario(usuarioRepositorio, new ValidadorCadastroUsuario(usuarioRepositorio));
+		this.editarUsuario = new EditarUsuario(usuarioRepositorio);
 	}
 	
 	@RequestMapping("/usuario/obter-por-email")
@@ -30,6 +33,11 @@ public class UsuarioController {
 	
 	@RequestMapping(value = "/usuario/criar", method = RequestMethod.POST)
 	public ResultadoAcao criarUsuario(@RequestBody Usuario usuario){
-		return criarUsuario.Executar(usuario);
+		return criarUsuario.executar(usuario);
+	}
+	
+	@RequestMapping(value = "/usuario/editar", method = RequestMethod.POST)
+	public ResultadoAcao editar(@RequestBody Usuario usuario){
+		return editarUsuario.executar(usuario);
 	}
 }
