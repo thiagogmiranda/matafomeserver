@@ -80,4 +80,20 @@ public class UsuarioRepositorioImpl extends RepositorioAbstrato implements Usuar
 
 		return existe;
 	}
+
+	@Override
+	public void atualizar(Usuario usuario) {
+		String query = "update Usuario set tipo = ? where id = ?";
+
+		try {
+			openConnection();
+
+			prepareStatement(query, usuario.getTipo(), usuario.getId());
+
+		} catch (Exception e) {
+
+		} finally {
+			closeConnection();
+		}
+	}
 }

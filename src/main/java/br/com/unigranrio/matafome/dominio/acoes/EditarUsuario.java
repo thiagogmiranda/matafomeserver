@@ -10,15 +10,15 @@ public class EditarUsuario {
 		this.usuarioRepositorio = usuarioRepositorio;
 	}
 	
-	public ResultadoAcao executar(Usuario usuario){
-		ResultadoAcao resultado = new ResultadoAcao();
+	public ResultadoAcao<Usuario> executar(Usuario usuario){
+		ResultadoAcao<Usuario> resultado = new ResultadoAcao<Usuario>();
 		//resultado.adicionarMensagens(validadorCadastro.validar(usuario));
 		
 		if(resultado.estaValido()){
 			Usuario salvo = usuarioRepositorio.obterPorEmail(usuario.getEmail());
 			salvo.setTipo(usuario.getTipo());			
 			
-			usuarioRepositorio.salvar(salvo);
+			usuarioRepositorio.atualizar(salvo);
 			
 			resultado.setData(salvo);
 		}

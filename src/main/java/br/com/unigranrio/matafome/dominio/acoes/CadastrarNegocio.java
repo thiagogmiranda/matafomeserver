@@ -14,8 +14,8 @@ public class CadastrarNegocio {
 		this.validadorCadastro = validadorCadastro;
 	}
 	
-	public ResultadoAcao executar(Negocio barraca) {
-		ResultadoAcao resultado = new ResultadoAcao();
+	public ResultadoAcao<Negocio> executar(Negocio barraca) {
+		ResultadoAcao<Negocio> resultado = new ResultadoAcao<Negocio>();
 		resultado.adicionarMensagens(validadorCadastro.validar(barraca));
 		
 		if(resultado.estaValido()){

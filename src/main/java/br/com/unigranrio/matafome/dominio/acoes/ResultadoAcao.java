@@ -3,9 +3,9 @@ package br.com.unigranrio.matafome.dominio.acoes;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultadoAcao {
+public class ResultadoAcao<T> {
 	private List<Mensagem> mensagens;
-	private Object data;
+	private T data;
 
 	public ResultadoAcao() {
 		mensagens = new ArrayList<Mensagem>();
@@ -31,7 +31,7 @@ public class ResultadoAcao {
 		return data;
 	}
 
-	public void setData(Object data) {
+	public void setData(T data) {
 		this.data = data;
 	}
 

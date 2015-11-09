@@ -15,8 +15,8 @@ public class CriarUsuario {
 		this.validadorCadastro = validadorCadastro;
 	}
 	
-	public ResultadoAcao executar(Usuario usuario){
-		ResultadoAcao resultado = new ResultadoAcao();
+	public ResultadoAcao<Usuario> executar(Usuario usuario){
+		ResultadoAcao<Usuario> resultado = new ResultadoAcao<Usuario>();
 		resultado.adicionarMensagens(validadorCadastro.validar(usuario));
 		
 		if(resultado.estaValido()){
