@@ -43,7 +43,7 @@ public class NegocioController {
 	}
 	
 	@RequestMapping(value = "/negocio/cadastrar", method = RequestMethod.POST)
-	public ResultadoAcao cadastrar(@RequestBody Negocio barraca){
+	public ResultadoAcao<Negocio> cadastrar(@RequestBody Negocio barraca){
 		return cadastrarNegocio.executar(barraca);
 	}
 }

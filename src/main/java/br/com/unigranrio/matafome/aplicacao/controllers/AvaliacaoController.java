@@ -20,7 +20,7 @@ public class AvaliacaoController {
 	}
 	
 	@RequestMapping("avaliacao/cadastrar")
-	public ResultadoAcao cadastrar(Avaliacao avaliacao){
+	public ResultadoAcao<Avaliacao> cadastrar(Avaliacao avaliacao){
 		return null;
 	}
 	

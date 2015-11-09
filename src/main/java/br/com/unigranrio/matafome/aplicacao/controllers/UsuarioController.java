@@ -32,12 +32,12 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping(value = "/usuario/criar", method = RequestMethod.POST)
-	public ResultadoAcao criarUsuario(@RequestBody Usuario usuario){
+	public ResultadoAcao<Usuario> criarUsuario(@RequestBody Usuario usuario){
 		return criarUsuario.executar(usuario);
 	}
 	
 	@RequestMapping(value = "/usuario/editar", method = RequestMethod.POST)
-	public ResultadoAcao editar(@RequestBody Usuario usuario){
+	public ResultadoAcao<Usuario> editar(@RequestBody Usuario usuario){
 		return editarUsuario.executar(usuario);
 	}
 }
