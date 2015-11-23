@@ -9,20 +9,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.unigranrio.matafome.dominio.acoes.CadastrarNegocio;
+import br.com.unigranrio.matafome.dominio.acoes.EditarNegocio;
 import br.com.unigranrio.matafome.dominio.acoes.ResultadoAcao;
 import br.com.unigranrio.matafome.dominio.modelo.Negocio;
 import br.com.unigranrio.matafome.dominio.repositorios.NegocioRepositorio;
 import br.com.unigranrio.matafome.dominio.validadores.ValidadorCadastroNegocio;
+import br.com.unigranrio.matafome.dominio.validadores.ValidadorEdicaoNegocio;
 import br.com.unigranrio.matafome.infra.repositorios.NegocioRepositorioImpl;
 
 @RestController()
 public class NegocioController {
 	private NegocioRepositorio negocioRepositorio;
+	
 	private CadastrarNegocio cadastrarNegocio;
+	private EditarNegocio editarNegocio;
 	
 	public NegocioController() {
 		negocioRepositorio = new NegocioRepositorioImpl();
 		cadastrarNegocio = new CadastrarNegocio(negocioRepositorio, new ValidadorCadastroNegocio(negocioRepositorio));
+		editarNegocio = new EditarNegocio(negocioRepositorio, new ValidadorEdicaoNegocio(negocioRepositorio));
 	}
 	
 	@RequestMapping("/lanches/todos-no-raio")
@@ -43,7 +48,12 @@ public class NegocioController {
 	}
 	
 	@RequestMapping(value = "/negocio/cadastrar", method = RequestMethod.POST)
-	public ResultadoAcao<Negocio> cadastrar(@RequestBody Negocio barraca){
-		return cadastrarNegocio.executar(barraca);
+	public ResultadoAcao<Negocio> cadastrar(@RequestBody Negocio negocio){
+		return cadastrarNegocio.executar(negocio);
+	}
+	
+	@RequestMapping(value = "/negocio/editar", method = RequestMethod.POST)
+	public ResultadoAcao<Negocio> editar(@RequestBody Negocio negocio){
+		return editarNegocio.executar(negocio);
 	}
 }
