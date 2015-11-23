@@ -6,22 +6,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.unigranrio.matafome.dominio.acoes.CadastrarAvaliacao;
 import br.com.unigranrio.matafome.dominio.acoes.ResultadoAcao;
 import br.com.unigranrio.matafome.dominio.modelo.Avaliacao;
 import br.com.unigranrio.matafome.dominio.repositorios.AvaliacaoRepositorio;
+import br.com.unigranrio.matafome.dominio.validadores.ValidadorCadastroAvaliacao;
 import br.com.unigranrio.matafome.infra.repositorios.AvaliacaoRepositorioImpl;
 
 @RestController()
 public class AvaliacaoController {
 	private AvaliacaoRepositorio avaliacaoRepositorio;
 	
+	private CadastrarAvaliacao cadastrarAvaliacao;
+	
 	public AvaliacaoController(){
 		this.avaliacaoRepositorio = new AvaliacaoRepositorioImpl();
+		this.cadastrarAvaliacao = new CadastrarAvaliacao(avaliacaoRepositorio, new ValidadorCadastroAvaliacao(avaliacaoRepositorio));
 	}
 	
 	@RequestMapping("avaliacao/cadastrar")
 	public ResultadoAcao<Avaliacao> cadastrar(Avaliacao avaliacao){
-		return null;
+		return cadastrarAvaliacao.executar(avaliacao);
 	}
 	
 	@RequestMapping("avaliacao/obter-todas")
