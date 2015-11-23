@@ -185,4 +185,20 @@ public class NegocioRepositorioImpl extends RepositorioAbstrato implements Negoc
 
 		return negocio;
 	}
+
+	@Override
+	public void atualizar(Negocio negocio) {
+		String query = "update Negocio set descricao = ?, latitude = ?, longitude = ?";
+
+		try {
+			openConnection();
+
+			prepareStatement(query, negocio.getDescricao(), negocio.getLatitude(), negocio.getLongitude());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+	}
 }
