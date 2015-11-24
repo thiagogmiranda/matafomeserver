@@ -30,7 +30,7 @@ public class AvaliacaoController {
 	}
 	
 	@RequestMapping("avaliacao/obter-todas")
-	public List<Avaliacao> obterAvaliacoesPara(@RequestParam(value = "idNegocio") long idNegocio){
-		return avaliacaoRepositorio.obterAvaliacoesPara(idNegocio);
+	public List<Avaliacao> obterAvaliacoesPara(@RequestParam(value = "idVendedor") long idVendedor){
+		return avaliacaoRepositorio.obterAvaliacoesPara(idVendedor);
 	}
 }

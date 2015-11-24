@@ -11,15 +11,15 @@ import br.com.unigranrio.matafome.dominio.repositorios.AvaliacaoRepositorio;
 public class AvaliacaoRepositorioImpl extends RepositorioAbstrato implements AvaliacaoRepositorio {
 
 	@Override
-	public List<Avaliacao> obterAvaliacoesPara(long idNegocio) {
+	public List<Avaliacao> obterAvaliacoesPara(long idVendedor) {
 		List<Avaliacao> avaliacoes = new ArrayList<Avaliacao>();
 
-		String query = "SELECT a.id as idAvaliacao, a.comentario, a.nota, a.idusuario, u.nome, u.email, u.tipo, a.idnegocio, n.Nome as nomeNegocio, n.descricao as descricaoNegocio, n.latitude, n.longitude, n.idusuario as iddono FROM avaliacao a inner join usuario u on u.id = a.idusuario inner join negocio n on n.id = a.idNegocio WHERE idNegocio = ?";
+		String query = "SELECT a.id as idAvaliacao, a.comentario, a.nota, a.idusuario, u.nome, u.email, u.tipo, a.idnegocio, n.Nome as nomeNegocio, n.descricao as descricaoNegocio, n.latitude, n.longitude, n.idusuario as iddono FROM avaliacao a inner join usuario u on u.id = a.idusuario inner join negocio n on n.id = a.idNegocio WHERE n.idusuario = ?";
 
 		try {
 			openConnection();
 
-			prepareStatement(query);
+			prepareStatement(query, idVendedor);
 
 			while (readResults()) {
 				Avaliacao avaliacao = new Avaliacao(); 
