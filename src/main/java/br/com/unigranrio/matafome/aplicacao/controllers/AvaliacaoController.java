@@ -2,6 +2,7 @@ package br.com.unigranrio.matafome.aplicacao.controllers;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,7 +26,7 @@ public class AvaliacaoController {
 	}
 	
 	@RequestMapping("avaliacao/cadastrar")
-	public ResultadoAcao<Avaliacao> cadastrar(Avaliacao avaliacao){
+	public ResultadoAcao<Avaliacao> cadastrar(@RequestBody Avaliacao avaliacao){
 		return cadastrarAvaliacao.executar(avaliacao);
 	}
 	
