@@ -51,6 +51,9 @@ public abstract class RepositorioAbstrato {
 					java.util.Date data = (java.util.Date)param;
 					java.sql.Date dataSQL = new java.sql.Date(data.getTime());					
 					preparedStatement.setDate(indice, dataSQL);
+				} else if (Integer.class.isInstance(param)){
+					Integer inteiro = (Integer)param;
+					preparedStatement.setInt(indice, inteiro);
 				} else {
 					preparedStatement.setString(indice, String.valueOf(param));
 				}
