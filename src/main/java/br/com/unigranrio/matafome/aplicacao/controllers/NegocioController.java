@@ -65,12 +65,11 @@ public class NegocioController {
 	
 	@RequestMapping(value = "/negocio/detalhes")
 	public DetalheNegocio detalheNegocio(
-			@RequestParam(value = "lat") double lat, 
-			@RequestParam(value = "lng") double lng, 
+			@RequestParam(value = "idNegocio") long idNegocio, 
 			@RequestParam(value = "idUsuario") long idUsuario){
 		DetalheNegocio detalhe = new DetalheNegocio();
 		
-		detalhe.setNegocio(negocioRepositorio.obterPorLatLng(lat, lng));
+		detalhe.setNegocio(negocioRepositorio.obterPorId(idNegocio));
 		detalhe.setAvaliacaoUsuario(avaliacaoRepositorio.obterAvaliacaoDoUsuario(idUsuario, detalhe.getNegocio().getId()));
 		
 		return detalhe;
