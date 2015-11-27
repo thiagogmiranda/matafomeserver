@@ -107,7 +107,7 @@ public class AvaliacaoRepositorioImpl extends RepositorioAbstrato implements Ava
 	
 	@Override
 	public Avaliacao obterAvaliacaoDoUsuario(long idUsuario, long idNegocio) {
-		Avaliacao avaliacao = new Avaliacao();
+		Avaliacao avaliacao = null;
 		
 		String query = "SELECT * FROM avaliacao WHERE idusuario = ? AND idNegocio = ?";
 
@@ -117,6 +117,7 @@ public class AvaliacaoRepositorioImpl extends RepositorioAbstrato implements Ava
 			prepareStatement(query, idUsuario, idNegocio);
 
 			while (readResults()) {
+				avaliacao = new Avaliacao();
 				avaliacao.setId(resultSet.getLong("id"));
 				avaliacao.setComentario(resultSet.getString("comentario"));
 				avaliacao.setNota(resultSet.getInt("nota"));
