@@ -9,5 +9,6 @@ public interface AvaliacaoRepositorio {
 	List<Avaliacao> obterAvaliacoesPara(long idNegocio);
 	void salvar(Avaliacao avaliacao);
 	boolean existeAvaliacaoDoUsuarioParaNegocio(long idUsuario, long idNegocio);
+	Avaliacao obterAvaliacaoDoUsuario(long idUsuario, long idNegocio);
 
 }

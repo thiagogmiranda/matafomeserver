@@ -104,4 +104,31 @@ public class AvaliacaoRepositorioImpl extends RepositorioAbstrato implements Ava
 		return existe;
 	}
 
+	
+	@Override
+	public Avaliacao obterAvaliacaoDoUsuario(long idUsuario, long idNegocio) {
+		Avaliacao avaliacao = new Avaliacao();
+		
+		String query = "SELECT * FROM avaliacao WHERE idusuario = ? AND idNegocio = ?";
+
+		try {
+			openConnection();
+
+			prepareStatement(query, idUsuario, idNegocio);
+
+			while (readResults()) {
+				avaliacao.setId(resultSet.getLong("id"));
+				avaliacao.setComentario(resultSet.getString("comentario"));
+				avaliacao.setNota(resultSet.getInt("nota"));
+				break;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+		
+		return avaliacao;
+	}
+
 }
